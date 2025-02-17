@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  dueDate     DateTime?
+  completed   Boolean  @default(false)
+  timeEstimate Int?    // estimated time in minutes
+  tags        Tag[]
+  group       Group?   @relation(fields: [groupId], references: [id])
+  groupId     Int?
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  color String @default("#000000")
+  tasks Task[]
+}
+
+model Group {
+  id          Int    @id @default(autoincrement())
+  name        String @unique
+  description String?
+  tasks       Task[]
+}
