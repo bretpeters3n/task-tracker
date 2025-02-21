@@ -14,7 +14,7 @@ export default function CreateTaskButton() {
     groupName: '',
   })
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const response = await fetch('/api/tasks', {
@@ -87,14 +87,14 @@ export default function CreateTaskButton() {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-xl font-semibold leading-6 text-gray-900"
                   >
                     Create New Task
                   </Dialog.Title>
 
                   <form onSubmit={handleSubmit} className="mt-4 space-y-4">
                     <div>
-                      <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="title" className="block text-sm font-medium text-gray-900">
                         Title
                       </label>
                       <input
@@ -108,7 +108,7 @@ export default function CreateTaskButton() {
                     </div>
 
                     <div>
-                      <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="description" className="block text-sm font-medium text-gray-900">
                         Description
                       </label>
                       <textarea
@@ -121,7 +121,7 @@ export default function CreateTaskButton() {
                     </div>
 
                     <div>
-                      <label htmlFor="timeEstimate" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="timeEstimate" className="block text-sm font-medium text-gray-900">
                         Time Estimate (minutes)
                       </label>
                       <input
@@ -134,7 +134,7 @@ export default function CreateTaskButton() {
                     </div>
 
                     <div>
-                      <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="tags" className="block text-sm font-medium text-gray-900">
                         Tags (comma-separated)
                       </label>
                       <input
@@ -148,7 +148,7 @@ export default function CreateTaskButton() {
                     </div>
 
                     <div>
-                      <label htmlFor="groupName" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="groupName" className="block text-sm font-medium text-gray-900">
                         Group Name
                       </label>
                       <input

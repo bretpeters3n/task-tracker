@@ -1,19 +1,9 @@
 'use client'
 
-import { Task, Tag, Group } from '@prisma/client'
 import { useState } from 'react'
 import TaskCard from './TaskCard'
 
-type TaskWithRelations = Task & {
-  tags: Tag[]
-  group: Group | null
-}
-
-interface TaskListProps {
-  initialTasks: TaskWithRelations[]
-}
-
-export default function TaskList({ initialTasks }: TaskListProps) {
+export default function TaskList({ initialTasks }) {
   const [tasks, setTasks] = useState(initialTasks)
 
   return (

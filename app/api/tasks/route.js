@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
     const body = await request.json()
     const { title, description, timeEstimate, tags, groupName } = body
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
         description,
         timeEstimate,
         tags: {
-          connectOrCreate: tags.map((tagName: string) => ({
+          connectOrCreate: tags.map(tagName => ({
             where: { name: tagName },
             create: { name: tagName }
           }))

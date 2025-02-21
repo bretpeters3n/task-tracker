@@ -1,21 +1,10 @@
 'use client'
 
-import { Task, Tag, Group } from '@prisma/client'
 import { useState } from 'react'
 import { CheckCircleIcon, ClockIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 
-type TaskWithRelations = Task & {
-  tags: Tag[]
-  group: Group | null
-}
-
-interface TaskCardProps {
-  task: TaskWithRelations
-  onUpdate: (task: TaskWithRelations) => void
-}
-
-export default function TaskCard({ task, onUpdate }: TaskCardProps) {
+export default function TaskCard({ task, onUpdate }) {
   const [isLoading, setIsLoading] = useState(false)
 
   const toggleComplete = async () => {
@@ -47,12 +36,12 @@ export default function TaskCard({ task, onUpdate }: TaskCardProps) {
         <div className="flex-1">
           <h3 className={clsx(
             'text-lg font-semibold',
-            task.completed ? 'text-gray-500 line-through' : 'text-gray-900'
+            task.completed ? 'text-gray-600 line-through' : 'text-gray-900'
           )}>
             {task.title}
           </h3>
           {task.description && (
-            <p className="mt-1 text-gray-600">{task.description}</p>
+            <p className="mt-1 text-gray-700">{task.description}</p>
           )}
         </div>
         <button
@@ -82,14 +71,14 @@ export default function TaskCard({ task, onUpdate }: TaskCardProps) {
       </div>
       
       {task.timeEstimate && (
-        <div className="mt-4 flex items-center text-sm text-gray-500">
+        <div className="mt-4 flex items-center text-sm text-gray-700">
           <ClockIcon className="h-4 w-4 mr-1" />
           {Math.floor(task.timeEstimate / 60)}h {task.timeEstimate % 60}m
         </div>
       )}
       
       {task.group && (
-        <div className="mt-2 text-sm text-gray-500">
+        <div className="mt-2 text-sm text-gray-700">
           In group: {task.group.name}
         </div>
       )}
